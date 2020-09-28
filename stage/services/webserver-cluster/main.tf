@@ -123,10 +123,6 @@ resource "aws_lb_listener_rule" "asg" {
         target_group_arn = aws_lb_target_group.asg.arn
     }
 }
-output "alb_dns_name" {
-    value      = aws_lb.example.dns_name
-    description = "The domain name of the load balancer"
-}
 
 terraform {
   backend "s3" {
@@ -136,4 +132,13 @@ terraform {
     dynamodb_table = "terraform-up-and-running-locks"
     encrypt = true
   }
+}
+
+data "terraform_remote_state" "db" {
+    backend = "s3"
+    config = {
+        bucket = "terraform-state-ttd"
+        key = "stage/data-stores/mysql/terraform.tfstate"
+        region = "us-east-2"
+    }
 }
