@@ -12,7 +12,7 @@ data "template_file" "user_data" {
     vars = {
       server_port = "var.server_port"
       db_address = data.terraform_remote_state.db.outputs.address 
-      db_port = data.terraform_remote_state.db.outpus.port
+      db_port = data.terraform_remote_state.db.outputs.port
         
       }
       
