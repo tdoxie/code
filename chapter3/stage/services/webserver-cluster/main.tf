@@ -41,27 +41,27 @@ resource "aws_security_group" "instance"{
        cidr_blocks =  ["0.0.0.0/0"]
    }
 }
-data "terraform_remote_state" "db" {
-   backend = "s3"
+# data "terraform_remote_state" "db" {
+#    backend = "s3"
    
-   config = {
-     bucket = "ttd-lab-terraform-state"
-     key = "stage/data-store/mysql/terraform.tfstate"
-     region = "us-east-2"
-   }
-}
+#    config = {
+#      bucket = "ttd-lab-terraform-state"
+#      key = "stage/data-store/mysql/terraform.tfstate"
+#      region = "us-east-2"
+#    }
+# }
 
 
 
-terraform {
-  backend "s3" {
-      bucket  = "ttd-lab-terraform-state"
-      key = "stage/services/webserver-cluster/terraform.tfstate"
-      region = "us-east-2"
-      dynamodb_table = "terraform-up-and-running-locks"
-      encrypt = true
-  }
-}
+# terraform {
+#   backend "s3" {
+#       bucket  = "ttd-lab-terraform-state"
+#       key = "stage/services/webserver-cluster/terraform.tfstate"
+#       region = "us-east-2"
+#       dynamodb_table = "terraform-up-and-running-locks"
+#       encrypt = true
+#   }
+# }
 
 
 #output "Public_IP" {
